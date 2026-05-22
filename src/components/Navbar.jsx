@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { siteConfig } from '../data/content'
+import Logo from './Logo'
 
 const links = [
   { label: 'Work', href: '#work' },
@@ -32,19 +32,8 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-accent rounded-sm flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-white" stroke="currentColor" strokeWidth={2}>
-                <path d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.889L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z" />
-              </svg>
-            </div>
-            <span
-              className={`font-display font-800 text-sm tracking-tight transition-colors ${
-                scrolled ? 'text-gray-900' : 'text-white'
-              }`}
-            >
-              EverVision<span className="font-600 opacity-70"> Media</span>
-            </span>
+          <a href="#">
+            <Logo onDark={!scrolled} />
           </a>
 
           {/* Desktop links */}

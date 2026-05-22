@@ -5,12 +5,12 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
       },
       colors: {
-        accent: '#0047FF',
-        'accent-dark': '#0038CC',
-        'accent-light': '#EEF3FF',
+        accent: '#6ABDE8',
+        'accent-dark': '#4DA3D4',
+        'accent-light': '#EAF5FB',
       },
     },
   },
