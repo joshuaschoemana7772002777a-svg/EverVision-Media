@@ -27,26 +27,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Optional YouTube background video — uncomment and add your showreel ID to content.js */}
-      {siteConfig.heroVideoId && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <iframe
-            src={`https://www.youtube.com/embed/${siteConfig.heroVideoId}?autoplay=1&mute=1&loop=1&playlist=${siteConfig.heroVideoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3`}
-            className="absolute"
-            allow="autoplay"
-            style={{
-              top: '50%', left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: 'max(100vw, 177.78vh)',
-              height: 'max(56.25vw, 100vh)',
-              border: 'none',
-            }}
-            title="Showreel"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-      )}
-
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <motion.span

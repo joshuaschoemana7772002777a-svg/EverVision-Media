@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Instagram, Play, ImageIcon, Heart } from 'lucide-react'
 import { siteConfig } from '../data/content'
 
-// Placeholder post data — replace src/youtubeId fields once you connect Instagram API.
+// Placeholder post data — replace with real posts once you connect the Instagram API.
 const posts = [
   { id: 1, type: 'video', gradient: 'from-rose-800 to-pink-900', likes: 312 },
   { id: 2, type: 'image', gradient: 'from-blue-800 to-indigo-900', likes: 198 },

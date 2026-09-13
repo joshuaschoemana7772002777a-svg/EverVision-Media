@@ -59,15 +59,7 @@ export default function Testimonials() {
                 className="relative w-full md:w-48 flex-shrink-0 aspect-video md:aspect-auto cursor-pointer"
                 onClick={() => setSelectedTestimonial(t)}
               >
-                {t.youtubeId ? (
-                  <img
-                    src={`https://img.youtube.com/vi/${t.youtubeId}/mqdefault.jpg`}
-                    alt={`${t.name} testimonial`}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className={`w-full h-full min-h-[140px] bg-gradient-to-br ${t.gradient}`} />
-                )}
+                <div className={`w-full h-full min-h-[140px] bg-gradient-to-br ${t.gradient}`} />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
@@ -96,7 +88,7 @@ export default function Testimonials() {
 
       {selectedTestimonial && (
         <VideoModal
-          videoId={selectedTestimonial.youtubeId}
+          instagramUrl={selectedTestimonial.instagramUrl}
           gradient={selectedTestimonial.gradient}
           onClose={() => setSelectedTestimonial(null)}
         />

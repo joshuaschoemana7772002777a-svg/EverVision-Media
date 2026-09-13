@@ -84,15 +84,7 @@ export default function Portfolio() {
                 onClick={() => setSelectedVideo(video)}
               >
                 {/* Thumbnail */}
-                {video.youtubeId ? (
-                  <img
-                    src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
-                    alt={video.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className={`w-full h-full bg-gradient-to-br ${video.gradient}`} />
-                )}
+                <div className={`w-full h-full bg-gradient-to-br ${video.gradient}`} />
 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-300" />
@@ -125,7 +117,7 @@ export default function Portfolio() {
 
       {selectedVideo && (
         <VideoModal
-          videoId={selectedVideo.youtubeId}
+          instagramUrl={selectedVideo.instagramUrl}
           gradient={selectedVideo.gradient}
           onClose={() => setSelectedVideo(null)}
         />

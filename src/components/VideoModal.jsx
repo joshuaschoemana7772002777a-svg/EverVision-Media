@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import InstagramEmbed from './InstagramEmbed'
 
-export default function VideoModal({ videoId, gradient, onClose }) {
+export default function VideoModal({ instagramUrl, gradient, onClose }) {
   useEffect(() => {
     const handleEsc = (e) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', handleEsc)
@@ -37,20 +38,14 @@ export default function VideoModal({ videoId, gradient, onClose }) {
             <X className="w-8 h-8" />
           </button>
 
-          <div className="aspect-video rounded-xl overflow-hidden">
-            {videoId ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
-                className="w-full h-full"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                title="Video player"
-              />
+          <div className="rounded-xl overflow-hidden max-h-[85vh] overflow-y-auto">
+            {instagramUrl ? (
+              <InstagramEmbed url={instagramUrl} />
             ) : (
-              <div className={`w-full h-full bg-gradient-to-br ${gradient} flex flex-col items-center justify-center gap-4`}>
+              <div className={`aspect-video w-full bg-gradient-to-br ${gradient} flex flex-col items-center justify-center gap-4`}>
                 <div className="text-white/40 text-6xl">▶</div>
                 <p className="text-white/60 text-sm font-medium">
-                  Video coming soon — add your YouTube ID in content.js
+                  Video coming soon — add your Instagram post/reel link in content.js
                 </p>
               </div>
             )}
