@@ -6,10 +6,12 @@ import VideoModal from './VideoModal'
 
 const filters = [
   { id: 'all', label: 'All' },
-  { id: 'weddings', label: 'Weddings' },
-  { id: 'events', label: 'Events' },
-  { id: 'corporate', label: 'Corporate' },
+  { id: 'wedding', label: 'Wedding' },
+  { id: 'sport', label: 'Sport' },
+  { id: 'jewelry', label: 'Jewelry' },
+  { id: 'creative', label: 'Creative' },
   { id: 'commercial', label: 'Commercial' },
+  { id: 'storytelling', label: 'Storytelling' },
 ]
 
 const fadeUp = {
@@ -102,10 +104,12 @@ export default function Portfolio() {
                     <span className="text-accent text-xs font-semibold uppercase tracking-wider capitalize">
                       {video.category}
                     </span>
-                    <span className="text-white/60 text-xs flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {video.duration}
-                    </span>
+                    {video.duration && (
+                      <span className="text-white/60 text-xs flex items-center gap-1">
+                        <Clock className="w-3 h-3" />
+                        {video.duration}
+                      </span>
+                    )}
                   </div>
                   <h3 className="text-white font-semibold text-sm leading-snug">{video.title}</h3>
                 </div>
