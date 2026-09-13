@@ -1,7 +1,7 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Check, X as XIcon, Minus } from 'lucide-react'
-import { packages, quoteConfig } from '../data/content'
+import { Link } from 'react-router-dom'
+import { Check, X as XIcon } from 'lucide-react'
+import { packages } from '../data/content'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -62,167 +62,27 @@ function PackageCard({ pkg, index }) {
   )
 }
 
-function QuoteCalculator() {
-  const { baseRates, baseHours, extraHourRate, addOns } = quoteConfig
-  const [eventType, setEventType] = useState('wedding')
-  const [duration, setDuration] = useState(6)
-  const [selectedAddOns, setSelectedAddOns] = useState([])
-
-  const toggleAddOn = (id) =>
-    setSelectedAddOns((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    )
-
-  const basePrice = baseRates[eventType]?.price ?? 0
-  const extraHours = Math.max(0, duration - baseHours)
-  const addOnTotal = selectedAddOns.reduce((sum, id) => {
-    const a = addOns.find((x) => x.id === id)
-    return sum + (a?.price ?? 0)
-  }, 0)
-  const total = basePrice + extraHours * extraHourRate + addOnTotal
-
+function QuoteCta() {
   return (
     <motion.div
-      className="mt-20 bg-gray-50 rounded-3xl p-8 md:p-12"
+      className="mt-20 bg-gray-50 rounded-3xl p-8 md:p-12 text-center"
       variants={fadeUp}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: '-60px' }}
     >
-      <div className="text-center mb-10">
-        <h3 className="font-display font-black text-2xl md:text-3xl text-gray-900">
-          Build Your Own Quote
-        </h3>
-        <p className="text-gray-500 mt-2">Get an instant estimate — we'll confirm the exact price together.</p>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-10">
-        {/* Left: inputs */}
-        <div className="space-y-8">
-          {/* Event Type */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">Event Type</label>
-            <div className="grid grid-cols-2 gap-2">
-              {Object.entries(baseRates).map(([key, val]) => (
-                <button
-                  key={key}
-                  onClick={() => setEventType(key)}
-                  className={`py-2.5 px-4 rounded-xl text-sm font-medium border transition-all text-left ${
-                    eventType === key
-                      ? 'border-accent bg-accent-light text-accent'
-                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                  }`}
-                >
-                  {val.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Duration */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
-              Duration: <span className="text-accent">{duration} hours</span>
-            </label>
-            <input
-              type="range"
-              min={2}
-              max={14}
-              step={1}
-              value={duration}
-              onChange={(e) => setDuration(Number(e.target.value))}
-              className="w-full accent-accent"
-            />
-            <div className="flex justify-between text-xs text-gray-400 mt-1">
-              <span>2 hrs</span>
-              <span>14 hrs</span>
-            </div>
-          </div>
-
-          {/* Add-ons */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-3">Add-ons</label>
-            <div className="space-y-2">
-              {addOns.map((a) => (
-                <button
-                  key={a.id}
-                  onClick={() => toggleAddOn(a.id)}
-                  className={`w-full flex items-center justify-between py-3 px-4 rounded-xl border text-sm transition-all ${
-                    selectedAddOns.includes(a.id)
-                      ? 'border-accent bg-accent-light'
-                      : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 ${
-                        selectedAddOns.includes(a.id)
-                          ? 'bg-accent border-accent'
-                          : 'border-gray-300'
-                      }`}
-                    >
-                      {selectedAddOns.includes(a.id) && (
-                        <Check className="w-3 h-3 text-white" />
-                      )}
-                    </div>
-                    <div className="text-left">
-                      <span className="font-medium text-gray-800">{a.label}</span>
-                      <span className="block text-xs text-gray-400">{a.description}</span>
-                    </div>
-                  </div>
-                  <span className="text-gray-600 font-medium ml-4">+${a.price.toLocaleString()}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right: summary */}
-        <div className="flex flex-col">
-          <div className="bg-white rounded-2xl border border-gray-200 p-8 flex-1">
-            <h4 className="font-semibold text-gray-700 mb-6">Estimate Breakdown</h4>
-
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between text-gray-600">
-                <span>{baseRates[eventType]?.label} ({baseHours} hrs base)</span>
-                <span>${basePrice.toLocaleString()}</span>
-              </div>
-              {extraHours > 0 && (
-                <div className="flex justify-between text-gray-600">
-                  <span>{extraHours} extra hr{extraHours > 1 ? 's' : ''} (${extraHourRate}/hr)</span>
-                  <span>${(extraHours * extraHourRate).toLocaleString()}</span>
-                </div>
-              )}
-              {selectedAddOns.map((id) => {
-                const a = addOns.find((x) => x.id === id)
-                return (
-                  <div key={id} className="flex justify-between text-gray-600">
-                    <span>{a?.label}</span>
-                    <span>${a?.price.toLocaleString()}</span>
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className="border-t border-gray-100 mt-6 pt-6 flex justify-between items-end">
-              <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Estimated Total</p>
-                <p className="font-display font-black text-4xl text-gray-900">
-                  ${total.toLocaleString()}
-                </p>
-                <p className="text-xs text-gray-400 mt-1">*Exact pricing confirmed on enquiry</p>
-              </div>
-            </div>
-
-            <a
-              href={`#contact`}
-              className="mt-8 w-full block text-center py-4 bg-accent text-white font-semibold rounded-full hover:bg-accent-dark transition-colors"
-            >
-              Request This Quote
-            </a>
-          </div>
-        </div>
-      </div>
+      <h3 className="font-display font-black text-2xl md:text-3xl text-gray-900">
+        Want an Exact Estimate?
+      </h3>
+      <p className="text-gray-500 mt-2 max-w-md mx-auto">
+        Use our instant quote calculator to price your shoot based on length, deliverables, and location.
+      </p>
+      <Link
+        to="/quote"
+        className="inline-block mt-8 px-8 py-4 bg-accent text-white font-semibold rounded-full hover:bg-accent-dark transition-colors"
+      >
+        Get an Instant Quote
+      </Link>
     </motion.div>
   )
 }
@@ -255,8 +115,8 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Calculator */}
-        <QuoteCalculator />
+        {/* Calculator CTA */}
+        <QuoteCta />
       </div>
     </section>
   )

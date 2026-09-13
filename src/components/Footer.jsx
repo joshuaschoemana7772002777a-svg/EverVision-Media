@@ -3,11 +3,12 @@ import { siteConfig } from '../data/content'
 import Logo from './Logo'
 
 const navLinks = [
-  { label: 'Our Work', href: '#work' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Instagram', href: '#instagram' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Our Work', href: '/#work' },
+  { label: 'Testimonials', href: '/#testimonials' },
+  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Instant Quote', href: '/quote' },
+  { label: 'Instagram', href: '/#instagram' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 const socials = [

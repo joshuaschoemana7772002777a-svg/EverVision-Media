@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { ChevronDown, Play } from 'lucide-react'
 import { siteConfig } from '../data/content'
 
@@ -72,12 +73,12 @@ export default function Hero() {
             <Play className="w-4 h-4 fill-white" />
             View Our Work
           </a>
-          <a
-            href="#pricing"
+          <Link
+            to="/quote"
             className="px-8 py-4 border border-white/30 text-white font-semibold rounded-full hover:border-white hover:bg-white/10 transition-all text-base"
           >
             Get a Quote
-          </a>
+          </Link>
         </motion.div>
       </div>
 

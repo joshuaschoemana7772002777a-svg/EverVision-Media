@@ -172,24 +172,23 @@ export const packages = [
   },
 ]
 
-// Pricing calculator config — update rates to match your real pricing.
-export const quoteConfig = {
-  baseRates: {
-    wedding: { label: 'Wedding', price: 2000 },
-    corporate: { label: 'Corporate Event', price: 1500 },
-    celebration: { label: 'Celebration / Party', price: 800 },
-    commercial: { label: 'Commercial / Brand', price: 3000 },
-    music: { label: 'Music Video', price: 1800 },
-    other: { label: 'Other', price: 1000 },
-  },
-  baseHours: 4,
-  extraHourRate: 150,
-  addOns: [
-    { id: 'drone', label: 'Drone Footage', price: 300, description: 'Cinematic aerial shots' },
-    { id: 'sameDay', label: 'Same-Day Highlight Edit', price: 500, description: '2–3 min reel ready same evening' },
-    { id: 'rawFootage', label: 'Raw Footage Delivery', price: 200, description: 'All unedited footage on USB' },
-    { id: 'secondCamera', label: 'Second Camera Operator', price: 400, description: 'Additional angle coverage' },
-    { id: 'liveStream', label: 'Live Streaming', price: 350, description: 'Stream to YouTube / Facebook Live' },
-    { id: 'photoHighlights', label: 'Photo Highlights Package', price: 350, description: '50+ professionally edited photos' },
+// Instant quote calculator rates — update here to change pricing.
+export const instantQuoteConfig = {
+  currency: 'R',
+  filmingRatePerHour: 1500,
+  // Editing is billed per video up to 60 seconds, and per additional 60-second block.
+  editingRatePerBlock: 800,
+  travelRatePerKm: 7,
+  baseLocation: 'Boskruin, Randburg',
+  // Distance in km from baseLocation. Keep the base as the first entry with km: 0.
+  locations: [
+    { name: 'Boskruin, Randburg (Base)', km: 0 },
+    { name: 'Northcliff', km: 22 },
+    { name: 'Sandton', km: 28 },
+    { name: 'Linksfield', km: 31 },
+    { name: 'Johannesburg', km: 38 },
+    { name: 'Midrand', km: 48 },
+    { name: 'OR Tambo', km: 88 },
+    { name: 'Pretoria', km: 100 },
   ],
 }

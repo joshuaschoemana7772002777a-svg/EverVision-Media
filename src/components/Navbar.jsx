@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo'
 
 const links = [
-  { label: 'Work', href: '#work' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'Instagram', href: '#instagram' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Work', href: '/#work' },
+  { label: 'Testimonials', href: '/#testimonials' },
+  { label: 'Pricing', href: '/#pricing' },
+  { label: 'Instagram', href: '/#instagram' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export default function Navbar() {
@@ -32,9 +33,9 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#">
+          <Link to="/">
             <Logo onDark={!scrolled} />
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <nav className="hidden md:flex items-center gap-8">
@@ -49,12 +50,12 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contact"
+            <Link
+              to="/quote"
               className="ml-2 px-5 py-2 bg-accent text-white text-sm font-semibold rounded-full hover:bg-accent-dark transition-colors"
             >
               Get a Quote
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile hamburger */}
@@ -91,16 +92,19 @@ export default function Navbar() {
                 {link.label}
               </motion.a>
             ))}
-            <motion.a
-              href="#contact"
-              onClick={handleLinkClick}
-              className="mt-4 px-8 py-3 bg-accent text-white font-semibold rounded-full hover:bg-accent-dark transition-colors"
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: links.length * 0.07 }}
             >
-              Get a Quote
-            </motion.a>
+              <Link
+                to="/quote"
+                onClick={handleLinkClick}
+                className="mt-4 px-8 py-3 bg-accent text-white font-semibold rounded-full hover:bg-accent-dark transition-colors inline-block"
+              >
+                Get a Quote
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
