@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Play, Star } from 'lucide-react'
-import { testimonials } from '../data/content'
+import { testimonials, siteConfig } from '../data/content'
 import VideoModal from './VideoModal'
 
 const fadeUp = {
@@ -21,6 +21,7 @@ function StarRating({ count }) {
 
 export default function Testimonials() {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null)
+  const [showCompilation, setShowCompilation] = useState(false)
 
   return (
     <section id="testimonials" className="py-24 md:py-32 bg-gray-50">
@@ -41,6 +42,29 @@ export default function Testimonials() {
             Real stories from real people we've had the honour of working with.
           </p>
         </motion.div>
+
+        {/* Featured client stories compilation */}
+        {siteConfig.testimonialCompilationUrl && (
+          <motion.div
+            className="group relative rounded-2xl overflow-hidden cursor-pointer mb-10 bg-gradient-to-br from-gray-900 to-black aspect-[21/9] flex items-center justify-center"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-40px' }}
+            onClick={() => setShowCompilation(true)}
+          >
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+            <div className="relative text-center px-6">
+              <div className="w-16 h-16 mx-auto mb-4 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <Play className="w-6 h-6 text-gray-900 ml-1 fill-gray-900" />
+              </div>
+              <h3 className="text-white font-display font-bold text-xl md:text-2xl">Client Stories</h3>
+              <p className="text-gray-300 text-sm mt-2 max-w-md mx-auto">
+                Clients on how EverVision Media has helped grow their business.
+              </p>
+            </div>
+          </motion.div>
+        )}
 
         {/* Testimonial grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -91,6 +115,14 @@ export default function Testimonials() {
           instagramUrl={selectedTestimonial.instagramUrl}
           gradient={selectedTestimonial.gradient}
           onClose={() => setSelectedTestimonial(null)}
+        />
+      )}
+
+      {showCompilation && (
+        <VideoModal
+          instagramUrl={siteConfig.testimonialCompilationUrl}
+          gradient="from-gray-900 to-black"
+          onClose={() => setShowCompilation(false)}
         />
       )}
     </section>

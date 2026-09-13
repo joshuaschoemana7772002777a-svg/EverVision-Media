@@ -13,6 +13,8 @@ export const siteConfig = {
   phone: '+27 72 967 7745',
   location: 'South Africa',
   founder: 'Joshua Schoeman',
+  // Compilation reel of multiple clients speaking about working with us.
+  testimonialCompilationUrl: 'https://www.instagram.com/reel/DN3YXXp2skp/',
 }
 
 // Add the permalink URL of the actual Instagram reel/post for each entry
