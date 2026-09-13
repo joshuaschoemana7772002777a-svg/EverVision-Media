@@ -98,7 +98,7 @@ export default function Footer() {
 
         <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-600">
           <p>© {new Date().getFullYear()} EverVision Media. All rights reserved.</p>
-          <p>Crafted with care.</p>
+          <p>Founded by {siteConfig.founder}.</p>
         </div>
       </div>
     </footer>

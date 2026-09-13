@@ -7,11 +7,12 @@ export const siteConfig = {
   name: 'EverVision Media',
   tagline: 'We Capture\nYour Story.',
   subtagline: 'Award-winning videography for weddings, events & brands.',
-  instagramHandle: '@evervisionmedia',
-  instagramUrl: 'https://www.instagram.com/evervisionmedia',
-  email: 'hello@evervisionmedia.com',
-  phone: '+1 (555) 000-0000',
-  location: 'Your City, State',
+  instagramHandle: '@evervisionmedia.za',
+  instagramUrl: 'https://www.instagram.com/evervisionmedia.za',
+  email: 'evervisionmedia.za@gmail.com',
+  phone: '+27 72 967 7745',
+  location: 'South Africa',
+  founder: 'Joshua Schoeman',
   // Replace with your YouTube showreel video ID (the part after ?v= in the URL)
   heroVideoId: '',
 }
